@@ -5,12 +5,23 @@ const resultsModal = new bootstrap.Modal(document.getElementById("resultsModal")
 document.getElementById("status").addEventListener("click", e => getStatus(e));
 document.getElementById('submit').addEventListener('click', e => postForm(e));
 
+function processOptions(form) {
+    let optArray = [];
+    for (let entry of form.entries()){
+        if (e[0] === "options") {
+
+        }
+}
+form.delete("options");
+
+form.append("options", optArray.join());
+
+return form;
+}
 async function postForm(e){
     const form = new FormData(document.getElementById('checksform'));
     
-    for (let entry of form.entries()){
-        console.log(entry);
-    } 
+     
     const response = await fetch(API_URL, {
         method: "POST",
         headers: {
@@ -25,6 +36,7 @@ async function postForm(e){
         throw new Error(data.error);
     }
 }
+
 function displayErrors(data) {
     let heading = `JSHint Results for ${data.file}`;
     if (data.total_errors === 0) {
