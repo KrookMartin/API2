@@ -37,6 +37,19 @@ async function postForm(e){
     }
 }
 
+function displayException(data) {
+    let heading = `<div class="error-heading">An Exception Occured</div>`;
+
+    results = `<div>The API returned status code ${data.status_code}</div>`;
+    results += `<div>Error number: <strong>${data.error_no}</strong></div>`;
+    results += `<div>Error text: <strong>${data.error}</strong></div>`;
+
+    document.getElementById("resultModalTitel").innerText = heading;
+    document.getElementById("result-content").innerHTML = results;
+    resultsModal.show();
+}
+
+
 function displayErrors(data) {
     let heading = `JSHint Results for ${data.file}`;
     if (data.total_errors === 0) {
